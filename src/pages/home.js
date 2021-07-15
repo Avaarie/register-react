@@ -1,41 +1,23 @@
-import React ,{ useState } from 'react' ;
+import React, { useState } from 'react';
 
 function Home (){
-    const [login,SetLogin] = useState("");
-
-    const [loginErr,SetLoginErr] = useState({});
-
-    const onSubmit = (e)=>{
-        e.preventDefault();
-        const isValid = formValidation(); 
-    }
-
-    const formValidation = () =>{
-        const loginErr = {};
-        let isValid = true;
-
-        if(login.trim().lenght < 5){
-            loginErr.sad = "ajsdasjda";
-            isValid = false;
-        }
-
-        SetLoginErr(loginErr);
-        return isValid;
-    }
-
+    const      [name, setName] = useState('Eva');
+        
+    function handleChange(e)  {
+      e.preventDefault();
+        
+      setName(e.target.value);
+    };
 
     return(
     <div>
     <div class="main-list">
-        <form class="list" action="database.php" method="POST" onSubmit={onSubmit}>
+        <form class="list" action="database.php" method="POST">
             <div class="details">
                 <div class="login">
                     <span class="info">Login:</span>
-                    <input type="text" name="login" placeholder="Enter your login..." onChange={(e)=>{SetLogin(e.target.value)}}/> 
+                    <input type="text" name="login" value={name} placeholder="Enter your login..." cd register-reactonChange={handleChange}/> 
                 </div>
-                {Object.keys(loginErr).map((key)=>{
-                    return <div style={{color : "red"}}>{loginErr[key]}</div>
-                })}
                 <div class="login">
                     <span class="info">Password:</span>
                     <input type="text" name="login" placeholder="Enter your password..."/> 
@@ -60,8 +42,9 @@ function Home (){
             </div>
         </form>
     </div>            
-</div>
+    </div>
     )
 }
 
 export default Home;
+
