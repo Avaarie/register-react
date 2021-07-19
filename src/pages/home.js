@@ -13,7 +13,7 @@ function Home (){
     const onSubmit = (e)=>{
         e.preventDefault();
         const isValid = formValidation();
-        console.log(name, password, url);
+        console.log({name, password, url});
         if(isValid){
             setName("");
             setPassword("");
@@ -29,7 +29,7 @@ function Home (){
 
         if(name.trim().length < 5){
             nameErr.NameShort = "Login can't be shorter than 5 characters!!";
-            isValid = false;
+            isValid = false; 
         }
 
         if(name.trim().length > 10){
@@ -41,6 +41,12 @@ function Home (){
             passwordErr.Numbers = "Placeholder for testing, needs to include 1234"
             isValid = false;
         }
+
+        // if(password.includes("[A-Z]")){ 
+        //     passwordErr.Numbers = "??????????????????"
+        //     isValid = false;
+        // }
+
 
         if(!url.includes("1234")){
             urlErr.Numbersss = "Placeholder for testing, needs to include 1234"
@@ -55,37 +61,37 @@ function Home (){
 
     return(
     <div>
-    <div class="main-list">
-        <form class="list" onSubmit={onSubmit}>
-            <div class="details">
-                <div class="login">
-                    <span class="info">Login:</span>
+    <div className="main-list">
+        <form className="list" onSubmit={onSubmit}>
+            <div className="details">
+                <div className="login">
+                    <span className="info">Login:</span>
                     <input type="text" name="login" value={name} placeholder="Enter your login..." onChange={(e)=>{setName(e.target.value)}}/> 
                 </div>
-                {Object.keys(nameErr).map((key)=>{
-                    return <div key={key} style={{color : "red"}}>{nameErr[key]}</div>
-                })}
-                <div class="login">
-                    <span class="info">Password:</span>
+                {Object.keys(nameErr).map((key,index)=>{ 
+                    return <div key={index} style={{color : "red"}}>{nameErr[key]}</div>
+                })} 
+                <div className="login">
+                    <span className="info">Password:</span>
                     <input type="password" name="password" value={password} placeholder="Enter your password..." onChange={(e)=>{setPassword(e.target.value)}}/> 
                 </div>
-                {Object.keys(passwordErr).map((key)=>{
-                    return <div key={key} style={{color : "red"}}>{passwordErr[key]}</div>
+                {Object.keys(passwordErr).map((key,index)=>{
+                    return <div key={index} style={{color : "red"}}>{passwordErr[key]}</div>
                 })} 
-                <div class="login">
-                    <span class="info">Link url:</span>
+                <div className="login">
+                    <span className="info">Link url:</span>
                     <input type="text" name="url" value={url} onChange={(e)=>{setURL(e.target.value)}} />
                 </div>
-                {Object.keys(urlErr).map((key)=>{
-                    return <div key={key} style={{color : "red"}}>{urlErr[key]}</div>
+                {Object.keys(urlErr).map((key,index)=>{
+                    return <div key={index} style={{color : "red"}}>{urlErr[key]}</div>
                 })}
             </div>
             <div></div>
-            <div class="description">
-                <span class="infod">Link description:</span>
+            <div className="description">
+                <span className="infod">Link description:</span>
                 <textarea name="link-desc"></textarea>                 
             </div>
-            <div class="bottom">
+            <div className="bottom">
                 <select name="type">
                     <option value="type1">Image</option>
                     <option value="type2" selected>Youtube link</option>
