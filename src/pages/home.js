@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function Home (){
     const [name,setName] = useState("");
     const [password,setPassword] = useState("");
-    const [url,setURL] =useState("");
+    const [url,setURL] = useState("");
 
     const [nameErr,setNameErr] = useState({});
     const [passwordErr,setPasswordErr] = useState({});
@@ -13,6 +13,7 @@ function Home (){
     const onSubmit = (e)=>{
         e.preventDefault();
         const isValid = formValidation();
+        console.log(name, password, url);
         if(isValid){
             setName("");
             setPassword("");
@@ -37,12 +38,12 @@ function Home (){
         }
 
         if(!password.includes("1234")){
-            passwordErr.Numbers = "Placehoolder for testing, needs to include 1234"
+            passwordErr.Numbers = "Placeholder for testing, needs to include 1234"
             isValid = false;
         }
 
         if(!url.includes("1234")){
-            urlErr.Numbers11 = "Placehoolder for testing, needs to include 1234"
+            urlErr.Numbersss = "Placeholder for testing, needs to include 1234"
             isValid = false;
         }
 
@@ -59,21 +60,21 @@ function Home (){
             <div class="details">
                 <div class="login">
                     <span class="info">Login:</span>
-                    <input type="text" name="login" placeholder="Enter your login..." onChange={(e)=>{setName(e.target.value)}}/> 
+                    <input type="text" name="login" value={name} placeholder="Enter your login..." onChange={(e)=>{setName(e.target.value)}}/> 
                 </div>
                 {Object.keys(nameErr).map((key)=>{
                     return <div key={key} style={{color : "red"}}>{nameErr[key]}</div>
                 })}
                 <div class="login">
                     <span class="info">Password:</span>
-                    <input type="password" name="password" placeholder="Enter your password..." onChange={(e)=>{setPassword(e.target.value)}}/> 
+                    <input type="password" name="password" value={password} placeholder="Enter your password..." onChange={(e)=>{setPassword(e.target.value)}}/> 
                 </div>
                 {Object.keys(passwordErr).map((key)=>{
                     return <div key={key} style={{color : "red"}}>{passwordErr[key]}</div>
-                })}
+                })} 
                 <div class="login">
                     <span class="info">Link url:</span>
-                    <input type="text" name="url" />
+                    <input type="text" name="url" value={url} onChange={(e)=>{setURL(e.target.value)}} />
                 </div>
                 {Object.keys(urlErr).map((key)=>{
                     return <div key={key} style={{color : "red"}}>{urlErr[key]}</div>
@@ -90,7 +91,7 @@ function Home (){
                     <option value="type2" selected>Youtube link</option>
                     <option value="type3">Other link</option>
                 </select>
-                <button type="submit" name="submit">Submit</button>
+                <button type="button" onClick={onSubmit} name="submit">Submit</button>
             </div>
         </form>
     </div>            
