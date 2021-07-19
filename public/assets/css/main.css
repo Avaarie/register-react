@@ -111,7 +111,7 @@ button {
   width: unset;
   cursor: pointer;
   margin-bottom: 0.5em;
-  margin-left: 4.5em;
+  margin-left: 3.75em;
 }
 
 select {
@@ -135,5 +135,6 @@ select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 125%;
 }
 /*# sourceMappingURL=main.css.map */
